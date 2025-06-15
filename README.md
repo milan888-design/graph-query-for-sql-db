@@ -7,3 +7,13 @@ Solution: Design a database view that allows queries to be initiated using any e
 DataJoin.net provides in-depth education and consulting on graph queries for SQL tables.
 
 Vocabulary: view is SQL database view, attribute or column is SQL table column.
+
+## Flowchart  
+```mermaid
+flowchart TD
+    A[SQL Tables] -->|create views| B[combine_nodeview + combine_relation_edgeview]
+    B[combine_nodeview + combine_relation_edgeview] -->|queries| C[Graph traverse]
+    B[combine_nodeview + combine_relation_edgeview] -->|queries| D[Find connection between two entities]
+    B[combine_nodeview + combine_relation_edgeview] -->|queries| E[Pattern]
+    B[combine_nodeview + combine_relation_edgeview] -->|queries| F[Most important entity]
+```
