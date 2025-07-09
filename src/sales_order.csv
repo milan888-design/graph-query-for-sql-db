@@ -1,0 +1,2 @@
+"order_id","order_type","description","product_type_id","customer_id","quantity","order_date"
+"ord1","retail","new order","p1","c1","200","2025-04-25"
