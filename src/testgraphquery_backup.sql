@@ -5,7 +5,7 @@
 -- Dumped from database version 16.2
 -- Dumped by pg_dump version 17.5
 
--- Started on 2025-06-08 17:44:33
+-- Started on 2025-07-09 10:06:36
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -154,42 +154,62 @@ ALTER VIEW public.combine_nodeview OWNER TO postgres;
 CREATE VIEW public.combine_relation_edgeview AS
  SELECT (('sales_order'::text || ':'::text) || sales_order.order_id) AS from_id,
     (('product_type'::text || ':'::text) || sales_order.product_type_id) AS to_id,
-    'product_type'::text AS predicate
+    (('quantity'::text || ':'::text) || sales_order.quantity) AS predicate
    FROM public.sales_order
 UNION
  SELECT (('product_type'::text || ':'::text) || sales_order.product_type_id) AS from_id,
     (('sales_order'::text || ':'::text) || sales_order.order_id) AS to_id,
-    'product_type'::text AS predicate
-   FROM public.sales_order
-UNION
- SELECT (('sales_order'::text || ':'::text) || sales_order.order_id) AS from_id,
-    (('customer'::text || ':'::text) || sales_order.customer_id) AS to_id,
-    'customer'::text AS predicate
-   FROM public.sales_order
-UNION
- SELECT (('customer'::text || ':'::text) || sales_order.customer_id) AS from_id,
-    (('sales_order'::text || ':'::text) || sales_order.order_id) AS to_id,
-    'product_type'::text AS predicate
+    (('quantity'::text || ':'::text) || sales_order.quantity) AS predicate
    FROM public.sales_order
 UNION
  SELECT (('sales_order'::text || ':'::text) || sales_order.order_id) AS from_id,
     (('order_type'::text || ':'::text) || sales_order.order_type) AS to_id,
-    'order_type'::text AS predicate
+    (('quantity'::text || ':'::text) || sales_order.quantity) AS predicate
    FROM public.sales_order
 UNION
  SELECT (('order_type'::text || ':'::text) || sales_order.order_type) AS from_id,
     (('sales_order'::text || ':'::text) || sales_order.order_id) AS to_id,
-    'order_type'::text AS predicate
+    (('quantity'::text || ':'::text) || sales_order.quantity) AS predicate
    FROM public.sales_order
 UNION
+ SELECT (('sales_order'::text || ':'::text) || sales_order.order_id) AS from_id,
+    (('customer'::text || ':'::text) || sales_order.customer_id) AS to_id,
+    (('quantity'::text || ':'::text) || sales_order.quantity) AS predicate
+   FROM public.sales_order
+UNION
+ SELECT (('customer'::text || ':'::text) || sales_order.customer_id) AS from_id,
+    (('sales_order'::text || ':'::text) || sales_order.order_id) AS to_id,
+    (('quantity'::text || ':'::text) || sales_order.quantity) AS predicate
+   FROM public.sales_order
+UNION
+ SELECT (('sales_order'::text || ':'::text) || sales_order.order_id) AS from_id,
+    (('product_type'::text || ':'::text) || sales_order.product_type_id) AS to_id,
+    (('quantity'::text || ':'::text) || sales_order.quantity) AS predicate
+   FROM public.sales_order
+UNION
+ SELECT (('product_type'::text || ':'::text) || sales_order.product_type_id) AS from_id,
+    (('sales_order'::text || ':'::text) || sales_order.order_id) AS to_id,
+    (('quantity'::text || ':'::text) || sales_order.quantity) AS predicate
+   FROM public.sales_order
+UNION
+ SELECT (('sales_order_shipto_address'::text || ':'::text) || sales_order_shipto_address.id) AS from_id,
+    (('sales_order'::text || ':'::text) || sales_order_shipto_address.order_id) AS to_id,
+    (('quantity'::text || ':'::text) || sales_order_shipto_address.quantity) AS predicate
+   FROM public.sales_order_shipto_address
+UNION
  SELECT (('sales_order'::text || ':'::text) || sales_order_shipto_address.order_id) AS from_id,
+    (('sales_order_shipto_address'::text || ':'::text) || sales_order_shipto_address.id) AS to_id,
+    (('quantity'::text || ':'::text) || sales_order_shipto_address.quantity) AS predicate
+   FROM public.sales_order_shipto_address
+UNION
+ SELECT (('sales_order_shipto_address'::text || ':'::text) || sales_order_shipto_address.id) AS from_id,
     (('address'::text || ':'::text) || sales_order_shipto_address.address_id) AS to_id,
-    'order_address'::text AS predicate
+    (('quantity'::text || ':'::text) || sales_order_shipto_address.quantity) AS predicate
    FROM public.sales_order_shipto_address
 UNION
  SELECT (('address'::text || ':'::text) || sales_order_shipto_address.address_id) AS from_id,
-    (('sales_order'::text || ':'::text) || sales_order_shipto_address.order_id) AS to_id,
-    'order_address'::text AS predicate
+    (('sales_order_shipto_address'::text || ':'::text) || sales_order_shipto_address.id) AS to_id,
+    (('quantity'::text || ':'::text) || sales_order_shipto_address.quantity) AS predicate
    FROM public.sales_order_shipto_address;
 
 
@@ -263,7 +283,7 @@ COPY public.sales_order_shipto_address (id, order_id, address_id, quantity) FROM
 \.
 
 
--- Completed on 2025-06-08 17:44:34
+-- Completed on 2025-07-09 10:06:36
 
 --
 -- PostgreSQL database dump complete
