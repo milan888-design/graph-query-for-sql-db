@@ -6,6 +6,9 @@ Solution: Design a database view that allows queries to be initiated using any e
 
 DataJoin.net provides in-depth education and consulting on graph queries for SQL tables.
 
+milan@datajoin.net  
+http://datajoin.net  
+
 Vocabulary: view is SQL database view, attribute or column is SQL table column.
 
 ## Flowchart  
